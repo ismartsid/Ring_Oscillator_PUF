@@ -1,15 +1,18 @@
 `timescale 1ns / 1ps
 
-module Counter_group #(parameter COUNTER_BITS=16,MAX_VALUE = (2**COUNTER_BITS)-1)( input [3:0]Cha0,
-                input [3:0]Cha1,
-                input [15:0] RO_out, 
-                input reset,
-                output reg Response
+module counter #(parameter COUNTER_BITS = 4, MAX_VALUE = (2**COUNTER_BITS)-1) //  Counter_bits represents the bit width of the counter, determining its maximum count capacity
+  ( 
+                input [3:0] Sel0, //select lines for mux
+                input [3:0] Sel1, //select lines for mux
+                input [15:0] RO_out, //input to mux from RO blocks
+                input reset, //Reset
+                output reg response // output from comparator
  );
  
 reg[COUNTER_BITS-1:0] out1, out2;
 wire cnt1,cnt2;
- always @(posedge cnt1 or negedge reset) begin
+  
+  always @(posedge cnt1 or negedge reset) begin //Counter-1
     if(!reset) begin
         out1 <= 0;
         end
@@ -18,7 +21,7 @@ wire cnt1,cnt2;
         end
    end
    
-    always @(posedge cnt2 or negedge reset) begin
+  always @(posedge cnt2 or negedge reset) begin //Counter-2
     if(!reset) begin
         out2 <= 0;
         end
@@ -27,16 +30,16 @@ wire cnt1,cnt2;
         end
    end
 
-Mux16to1 a(.out(cnt1), .in(RO_out), .sel(Cha0));
-Mux16to1 b(.out(cnt2), .in(RO_out), .sel(Cha1));
+  Mux16to1 a(.out(cnt1), .in(RO_out), .sel(Sel0));
+  Mux16to1 b(.out(cnt2), .in(RO_out), .sel(Sel1));
 
-always @(*) begin
+  always @(*) begin // Comparator 
     if (out1 == MAX_VALUE && out2 != MAX_VALUE)
-        Response = 1'b0;  
+        response = 1'b0;  
     else if (out2 == MAX_VALUE && out1 != MAX_VALUE)
-        Response = 1'b1;
+        response = 1'b1;
     else
-        Response = 1'bx;   
+        response = 1'bx;   
 end
 endmodule
 
