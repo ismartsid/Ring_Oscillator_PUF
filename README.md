@@ -11,7 +11,7 @@ This repository contains the Verilog implementation of a Ring Oscillator (RO) Ph
 
 2. **Counter:**
    - Module with two counters that count up based on the frequency of RO outputs (16 oscillators from ring_osc) selected by the Select Lines.
-
+   - Includes a comparator to check which of the two counters reached its maximum value first. Output 0 indicates counter 1 reaches first, 1 indicates counter 2 reaches first.
 3. **tb_counter (Test Bench for Counter):**
    - Verification test bench for ensuring the correct functionality of the Counter module.
 
@@ -20,4 +20,3 @@ This repository contains the Verilog implementation of a Ring Oscillator (RO) Ph
 
 5. **PUF.v:**
    - Module that combines the ring_osc module and Counter module into a single PUF module.
-   - PUF includes 4 challenge bits for each counter group (8 bits total) and 4 response bits.
