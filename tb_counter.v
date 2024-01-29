@@ -2,11 +2,13 @@ module tb_counter;
 
 wire Response;
 wire [3:0] out1,out2;
-reg [3:0]Cha0,Cha1;
+reg [3:0]Sel0,Sel1;
 reg [15:0]RO_out;
 reg reset;
+reg response;
 integer i,j;
-counter dut( .Cha0(Cha0), .Cha1(Cha1), .RO_out(RO_out), .reset(reset),.Response(Response),.out1(out1),.out2(out2));
+ 
+counter dut( .Sel0(Sel0), .Sel1(Sel1), .RO_out(RO_out), .reset(reset),.response(response),.out1(out1),.out2(out2));
 
  initial begin
  reset = 1;
@@ -16,8 +18,8 @@ counter dut( .Cha0(Cha0), .Cha1(Cha1), .RO_out(RO_out), .reset(reset),.Response(
  #10;
  reset = 1;
  #5;
- Cha0 = 4'b1100; 
- Cha1 = 4'b1000;
+ Sel0 = 4'b1100; 
+ Sel1 = 4'b1000;
  end
  
  initial begin
