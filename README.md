@@ -1,5 +1,4 @@
 # Ring_Oscillator_PUF
-# Ring Oscillator PUF Implementation for FPGA
 
 This repository contains the Verilog implementation of a Ring Oscillator (RO) Physical Unclonable Function (PUF) designed for FPGA applications. The project is developed as part of a lab assignment and includes modular components for creating a reliable and secure PUF.
 
@@ -8,10 +7,10 @@ This repository contains the Verilog implementation of a Ring Oscillator (RO) Ph
 ### Modules
 
 1. **ring_osc (Ring Oscillator):**
-   - Verilog module to create a ring oscillator with an Enable input and an oscillator output (RO_out).
+   - Verilog module to create a ring oscillator with an Enable input and an oscillator output.
 
-2. **Counter.v:**
-   - Module with two counters that count up based on the frequency of RO outputs (16 oscillators from ring_osc) selected by the challenge bits.
+2. **Counter:**
+   - Module with two counters that count up based on the frequency of RO outputs (16 oscillators from ring_osc) selected by the Select Lines.
 
 3. **tb_counter (Test Bench for Counter):**
    - Verification test bench for ensuring the correct functionality of the Counter module.
@@ -20,5 +19,5 @@ This repository contains the Verilog implementation of a Ring Oscillator (RO) Ph
    - Verification test bench for ensuring the correct functionality of the ring_osc module.
 
 5. **PUF.v:**
-   - Module that combines the RO modules and Counter modules into a single PUF module.
+   - Module that combines the ring_osc module and Counter module into a single PUF module.
    - PUF includes 4 challenge bits for each counter group (8 bits total) and 4 response bits.
