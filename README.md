@@ -10,8 +10,9 @@ This repository contains the Verilog implementation of a Ring Oscillator (RO) Ph
    - Verilog module to create a ring oscillator with an Enable input and an oscillator output.
 
 2. **Counter:**
-   - Module with two counters that count up based on the frequency of RO outputs (16 oscillators from ring_osc) selected by the Select Lines.
+   - Module with two counters that count up based on the frequency of ring_osc outputs selected by the Select Lines.
    - Includes a comparator to check which of the two counters reached its maximum value first. Output 0 indicates counter 1 reaches first, 1 indicates counter 2 reaches first.
+  
 3. **tb_counter (Test Bench for Counter):**
    - Verification test bench for ensuring the correct functionality of the Counter module.
 
