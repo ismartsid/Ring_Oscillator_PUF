@@ -6,7 +6,7 @@ reg [3:0]Cha0,Cha1;
 reg [15:0]RO_out;
 reg reset;
 integer i,j;
-Counter_group dut( .Cha0(Cha0), .Cha1(Cha1), .RO_out(RO_out), .reset(reset),.Response(Response),.out1(out1),.out2(out2));
+counter dut( .Cha0(Cha0), .Cha1(Cha1), .RO_out(RO_out), .reset(reset),.Response(Response),.out1(out1),.out2(out2));
 
  initial begin
  reset = 1;
